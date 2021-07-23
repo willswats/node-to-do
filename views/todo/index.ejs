@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+<section id="todo">
+    <div id="todo-container">
+        <h1>To Do List</h1>
+        <form action="/todo" method="POST">
+            <div id="new-inputs">
+                <input class="priority-input" type="number" name="priority" placeholder="Priority" autocomplete="off">
+                <input class="task-input" type="text" name="task" placeholder="New Task" autocomplete="off">
+                <div>
+                    <button class="submit-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+        <% for (let toDo of toDos) { %>
+        <div id="todo-item-container">
+            <div id="todo-item">
+                <p><%= toDo.priority %>. <%= toDo.task %></p>
+            </div>
+            <div id="todo-buttons">
+                <a href="/todo/<%= toDo._id %>"><button class="edit-btn">Edit</button></a>
+                <form action="/todo/<%= toDo._id %>?_method=DELETE" method="POST">
+                    <button class="delete-btn">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</section>

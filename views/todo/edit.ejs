@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %>
+<section id="edit">
+    <div id="edit-container">
+        <h1>Edit To Do</h1>
+        <form action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
+            <div id="edit-inputs">
+                <input class="priority-input" type="number" name="priority" value="<%= toDo.priority %>"
+                    autocomplete="off">
+                <input class="task-input" type="text" name="task" value="<%= toDo.task %>" autocomplete="off">
+                <div>
+                    <button class="submit-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+        <a href="/todo"><button class="back-btn">Back</button></a>
+    </div>
+</section>
