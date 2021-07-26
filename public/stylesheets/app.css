@@ -173,7 +173,7 @@ button:hover {
 }
 
 @media screen and (max-width: 960px) {
-    #nav-items {
+    #nav-menu {
         display: none;
     }
 
