@@ -152,7 +152,7 @@ button:hover {
     font-size: 1.5rem;
 }
 
-#nav-items {
+#nav-menu {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -160,21 +160,90 @@ button:hover {
     margin-right: 1rem;
 }
 
-#nav-items a {
+#nav-menu a {
     text-decoration: none;
     font-size: 1.2rem;
     color: rgba(0, 151, 156, 1);
     transition: 0.1s ease-in;
 }
 
-#nav-items a:hover {
+#nav-menu a:hover {
     color: rgb(0, 207, 214);
     transition: 0.1s ease-in;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 960px) {
     #nav-items {
         display: none;
+    }
+
+    #nav-logo {
+        width: 90%;
+    }
+
+    #mobile-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+
+    .mobile-menu-bar {
+        display: block;
+        cursor: pointer;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: #fff;
+    }
+
+    .mobile-menu-bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 3px;
+        transition: all 0.3s ease-in-out;
+        background: #fff;
+    }
+
+    #mobile-menu.cross .mobile-menu-bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg)
+    }
+
+    #mobile-menu.cross .mobile-menu-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-menu.cross .mobile-menu-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    #nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        height: 60vh;
+        width: 100%;
+        background-color: #131313;
+        position: absolute;
+        top: -1000px;
+        transition: all 0.4s ease-in-out;
+    }
+
+    #nav-menu.drop-down {
+        top: 60px;
+        transition: all 0.4s ease-in-out;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #nav-logo a {
+        font-size: 1.25rem;
     }
 }
 
@@ -260,6 +329,10 @@ button:hover {
     #todo p {
         font-size: 1.5rem;
     }
+
+    #todo h1 {
+        font-size: 2.5rem;
+    }
 }
 
 #edit {
@@ -283,6 +356,12 @@ button:hover {
 #edit-inputs {
     display: flex;
     margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    #edit h1 {
+        font-size: 2.5rem;
+    }
 }
 
 #footer {
