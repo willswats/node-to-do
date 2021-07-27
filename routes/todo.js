@@ -5,9 +5,8 @@ const ToDo = require('../models/todo');
 
 router.get('/', async (req, res) => {
     const toDos = await ToDo.find({})
-    let confirmation = false;
     await toDos.sort((a, b) => (a.priority) - (b.priority));
-    res.render('todo/index', { toDos, confirmation })
+    res.render('todo/index', { toDos })
 })
 
 router.post('/', async (req, res) => {
@@ -26,8 +25,14 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
     if (req.body.complete) {
-        await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
+        const toDo = await ToDo.findById(id);
+        if (toDo.complete === false) {
+            await toDo.updateOne({ complete: true })
+        } else {
+            await toDo.updateOne({ complete: false })
+        }
     }
+
     res.redirect(`/todo`)
 })
 

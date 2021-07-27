@@ -2,7 +2,7 @@
 <section id="todo">
     <div id="todo-container">
         <h1>To Do List</h1>
-        <form id="new-inputs" action="/todo" method="POST">
+        <form id="todo-new" action="/todo" method="POST">
             <input class="priority-input" type="number" name="priority" placeholder="Priority" autocomplete="off">
             <input class="task-input" type="text" name="task" placeholder="New Task" autocomplete="off">
             <div>
@@ -10,24 +10,24 @@
             </div>
         </form>
         <% for (let toDo of toDos) { %>
-        <div id="todo-item-container">
-            <div id="todo-item">
+        <div id="todo-item">
+            <div id="todo-item-start">
+                <form id="complete-form" action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
+                    <% if (toDo.complete === false) { %>
+                    <button class="unchecked-btn" name="complete" value="<%= toDo.complete %>"></button>
+                    <% } else { %>
+                    <button class="checked-btn" name="complete" value="<%= toDo.complete %>">&#10004;</button>
+                    <% } %>
+                </form>
+            </div>
+            <div id="todo-item-middle">
                 <% if (toDo.complete === true) { %>
                 <p class="complete"><%= toDo.priority %>. <%= toDo.task %></p>
                 <% } else { %>
                 <p><%= toDo.priority %>. <%= toDo.task %></p>
                 <% } %>
             </div>
-            <div id="todo-buttons">
-                <% if (toDo.complete === false) { %>
-                <form action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
-                    <button name="complete" value="<%= toDo.complete = true%>" class="complete-btn">Check</button>
-                </form>
-                <% } else { %>
-                <form action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
-                    <button name="complete" value="<%= toDo.complete = false%>" class="complete-btn">Un-check</button>
-                </form>
-                <% } %>
+            <div id="todo-item-end">
                 <a href="/todo/<%= toDo._id %>"><button class="edit-btn">Edit</button></a>
                 <form action="/todo/<%= toDo._id %>?_method=DELETE" method="POST">
                     <button class="delete-btn">Delete</button>
@@ -37,7 +37,7 @@
         <% } %>
         <% if (toDos.length > 0) { %>
         <form id="delete-all" action="/todo/?_method=DELETE" method="POST">
-            <button id="delete-all-btn" onclick="myFunction()">Delete All</button>
+            <button id="delete-all-btn">Delete All</button>
         </form>
         <% } %>
     </div>
