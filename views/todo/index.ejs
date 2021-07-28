@@ -3,10 +3,12 @@
     <div id="todo-container">
         <h1>To Do List</h1>
         <form id="todo-new" action="/todo" method="POST">
-            <input class="priority-input" type="number" name="priority" placeholder="Priority" autocomplete="off">
-            <input class="task-input" type="text" name="task" placeholder="New Task" autocomplete="off">
+            <input required tabindex="1" class="priority-input" type="number" name="priority" placeholder="Priority"
+                autocomplete="off">
+            <input required tabindex="2" class="task-input" type="text" name="task" placeholder="New Task"
+                autocomplete="off">
             <div>
-                <button class="submit-btn">Submit</button>
+                <button tabindex="3" class="submit-btn">Submit</button>
             </div>
         </form>
         <% for (let toDo of toDos) { %>
