@@ -11,6 +11,9 @@
                 <button tabindex="3" class="submit-btn">Submit</button>
             </div>
         </form>
+        <% if (toDos.length < 1) { %>
+        <p id="todo-empty">Start adding tasks to get started!</p>
+        <% } %>
         <% for (let toDo of toDos) { %>
         <div id="todo-item">
             <div id="todo-item-start">
@@ -42,5 +45,6 @@
             <button id="delete-all-btn">Delete All</button>
         </form>
         <% } %>
+
     </div>
 </section>

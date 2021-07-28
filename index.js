@@ -4,6 +4,7 @@ const path = require('path')
 const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 
+const ExpressError = require('./utils/ExpressError')
 const toDoRoutes = require('./routes/todo')
 
 const app = express()
@@ -34,6 +35,16 @@ app.get('/', async (req, res) => {
     res.render('home')
 })
 app.use('/todo', toDoRoutes);
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err
+    if (!err.message) err.message = 'Error!'
+    res.status(statusCode).render('error', { err })
+})
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')

@@ -38,7 +38,33 @@ button:hover {
     cursor: pointer;
 }
 
+h1 {
+    font-size: 3rem;
+}
 
+p {
+    font-size: 2rem;
+}
+
+@media screen and (max-width:960px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width:768px) {
+    h1 {
+        font-size: 2.1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
 
 .priority-input {
     border: none;
@@ -199,7 +225,8 @@ button:hover {
 #nav-logo a {
     text-decoration: none;
     color: inherit;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 #nav-menu {
@@ -229,10 +256,6 @@ button:hover {
 
     #nav-logo {
         width: 90%;
-    }
-
-    #nav-logo a {
-        font-size: 1.25rem;
     }
 
     #mobile-menu {
@@ -304,14 +327,6 @@ button:hover {
     flex: 1;
 }
 
-#home h1 {
-    font-size: 3rem;
-}
-
-#home p {
-    font-size: 1.5rem;
-}
-
 #home button {
     background-color: rgba(0, 151, 156, 1);
     height: 60px;
@@ -327,6 +342,14 @@ button:hover {
     transition: 0.1s ease-in;
 }
 
+@media screen and (max-width:960px) {
+    #home button {
+        height: 50px;
+        width: 180px;
+        font-size: 1rem;
+    }
+}
+
 #todo {
     display: flex;
     flex-direction: column;
@@ -336,17 +359,13 @@ button:hover {
     margin: 4rem 8rem 4rem 8rem;
 }
 
-#todo h1 {
-    font-size: 3rem;
-}
-
-#todo p {
-    font-size: 2rem;
-}
-
 #todo-container {
     min-height: 100%;
     min-width: 100%;
+}
+
+#todo-empty {
+    border-bottom: 1px solid rgba(160, 149, 149, 0.801);
 }
 
 #todo-new {
@@ -395,14 +414,6 @@ button:hover {
 }
 
 @media screen and (max-width: 960px) {
-    #todo h1 {
-        font-size: 2.5rem;
-    }
-
-    #todo p {
-        font-size: 1.5rem;
-    }
-
     #todo-item-middle {
         width: 70%;
     }
@@ -414,14 +425,6 @@ button:hover {
 }
 
 @media screen and (max-width: 768px) {
-    #todo h1 {
-        font-size: 2.1rem;
-    }
-
-    #todo p {
-        font-size: 1.1rem;
-    }
-
     #todo-item-middle {
         width: 50%;
     }
@@ -450,25 +453,9 @@ button:hover {
     min-width: 100%;
 }
 
-#edit h1 {
-    font-size: 3rem;
-}
-
 #edit-inputs {
     display: flex;
     margin-bottom: 0.5rem;
-}
-
-@media screen and (max-width: 960px) {
-    #edit h1 {
-        font-size: 2.5rem
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #edit h1 {
-        font-size: 2.1rem;
-    }
 }
 
 #footer {
@@ -516,4 +503,13 @@ button:hover {
 #social img:hover {
     background-color: rgba(0, 151, 156, 1);
     transition: 0.1s ease-in;
+}
+
+#error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
 }
