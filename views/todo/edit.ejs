@@ -2,15 +2,13 @@
 <section id="edit">
     <div id="edit-container">
         <h1>Edit To Do</h1>
-        <form action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
-            <div id="edit-inputs">
-                <input required tabindex="1" class="priority-input" type="number" name="priority"
-                    value="<%= toDo.priority %>" autocomplete="off" placeholder="Priority">
-                <input required tabindex="2" class="task-input" type="text" name="task" value="<%= toDo.task %>"
-                    placeholder="Task" autocomplete="off"></textarea>
-                <div>
-                    <button tabindex="3" class="submit-btn">Submit</button>
-                </div>
+        <form id="edit-todo-form" action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
+            <input required tabindex="1" class="priority-input" type="number" name="priority"
+                value="<%= toDo.priority %>" autocomplete="off" placeholder="Priority">
+            <input required tabindex="2" class="task-input" type="text" name="task" value="<%= toDo.task %>"
+                placeholder="Task" autocomplete="off"></textarea>
+            <div>
+                <button tabindex="3" class="submit-btn">Submit</button>
             </div>
         </form>
         <a href="/todo"><button tabindex="4" class="back-btn">Back</button></a>

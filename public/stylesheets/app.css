@@ -63,7 +63,8 @@ input:focus {
     }
 
     input {
-        height: 30px;
+        font-size: 1rem;
+        height: 35px;
     }
 }
 
@@ -180,14 +181,10 @@ input:focus {
 @media screen and (max-width: 768px) {
     .priority-input {
         width: 55px;
-        height: 35px;
-        font-size: 1rem;
     }
 
     .task-input {
-        height: 35px;
         width: 145px;
-        font-size: 1rem;
     }
 
     .edit-btn {
@@ -271,7 +268,6 @@ input:focus {
         width: 100%;
         cursor: pointer;
         margin-right: 2rem;
-
     }
 
     .mobile-menu-bar {
@@ -305,7 +301,7 @@ input:focus {
         background-color: #131313;
         position: absolute;
         top: -1000px;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     #nav-menu a {
@@ -315,7 +311,7 @@ input:focus {
 
     #nav-menu.drop-down {
         top: 60px;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 }
 
@@ -332,8 +328,7 @@ input:focus {
     background-color: rgba(0, 151, 156, 1);
     height: 60px;
     width: 200px;
-    margin: 0.5rem 0 0.5rem;
-    border-radius: 0%;
+    margin: 0.5rem 0rem;
     font-size: 1.2rem;
     transition: 0.1s ease-in;
 }
@@ -373,29 +368,29 @@ input:focus {
     min-width: 100%;
 }
 
-#todo-new {
+#new-todo-form {
     display: flex;
     margin-bottom: 0.5rem;
 }
 
-#todo-item {
+.todo-item {
     display: flex;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid rgba(160, 149, 149, 0.801);
 }
 
-#todo-item-start {
+.todo-item-start {
     display: flex;
     align-items: flex-start;
     margin-right: 0.5rem;
 }
 
-#todo-item-middle {
+.todo-item-middle {
     display: flex;
     width: 100%;
 }
 
-#todo-item-end {
+.todo-item-end {
     display: flex;
     align-items: flex-start;
     margin-left: 0.5rem;
@@ -434,7 +429,7 @@ input:focus {
     min-width: 100%;
 }
 
-#edit-inputs {
+#edit-todo-form {
     display: flex;
     margin-bottom: 0.5rem;
 }
