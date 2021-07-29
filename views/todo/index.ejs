@@ -5,14 +5,16 @@
         <form id="todo-new" action="/todo" method="POST">
             <input required tabindex="1" class="priority-input" type="number" name="priority" placeholder="Priority"
                 autocomplete="off">
+            <span class="error-response"></span>
             <input required tabindex="2" class="task-input" type="text" name="task" placeholder="New Task"
                 autocomplete="off">
+            <span class="error-response"></span>
             <div>
                 <button tabindex="3" class="submit-btn">Submit</button>
             </div>
         </form>
         <% if (toDos.length < 1) { %>
-        <p id="todo-empty">Start adding tasks to get started!</p>
+        <p id="todo-item">Start adding tasks to get started!</p>
         <% } %>
         <% for (let toDo of toDos) { %>
         <div id="todo-item">
@@ -40,11 +42,12 @@
             </div>
         </div>
         <% } %>
-        <% if (toDos.length > 0) { %>
         <form id="delete-all" action="/todo/?_method=DELETE" method="POST">
+            <% if (toDos.length > 0) { %>
             <button id="delete-all-btn">Delete All</button>
+            <% } %>
         </form>
-        <% } %>
 
     </div>
 </section>
+<script src="/javascripts/indexPage.js"></script>

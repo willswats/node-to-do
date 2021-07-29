@@ -5,6 +5,8 @@ const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 
 const toDoRoutes = require('./routes/todo')
+const userRoutes = require('./routes/users')
+
 const ExpressError = require('./utils/ExpressError')
 
 const app = express()
@@ -34,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', async (req, res) => {
     res.render('home')
 })
+app.use('/', userRoutes)
 app.use('/todo', toDoRoutes);
 
 app.all('*', (req, res, next) => {
@@ -41,7 +44,7 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err
+    const statusCode = err.statusCode || 500
     if (!err.message) err.message = 'Error!'
     res.status(statusCode).render('error', { err })
 })
