@@ -2,8 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const ToDo = require('../models/todo');
-const catchAsync = require('../utils/catchAsync')
-
+const catchAsync = require('../utils/catchAsync');
 
 router.get('/', catchAsync(async (req, res) => {
     const toDos = await ToDo.find({})

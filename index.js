@@ -4,9 +4,8 @@ const path = require('path')
 const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 
-const ExpressError = require('./utils/ExpressError')
-
 const toDoRoutes = require('./routes/todo')
+const ExpressError = require('./utils/ExpressError')
 
 const app = express()
 

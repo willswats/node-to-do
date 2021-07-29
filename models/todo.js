@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const toDoSchema = new mongoose.Schema({
     priority: {
         type: Number,
-        required: true
+        required: true,
+        min: [1, 'Must be higher than 0']
     },
     task: {
         type: String,
