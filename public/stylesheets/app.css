@@ -53,6 +53,21 @@ input:focus {
     outline: none;
 }
 
+@media screen and (max-width: 960px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    input {
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
 @media screen and (max-width:768px) {
     h1 {
         font-size: 2.1rem;
@@ -63,10 +78,11 @@ input:focus {
     }
 
     input {
-        font-size: 1rem;
-        height: 35px;
+        height: 30px;
     }
 }
+
+
 
 /* Input classes */
 .priority-input {
@@ -230,7 +246,7 @@ input:focus {
 #nav-logo {
     display: flex;
     flex-shrink: 0;
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 #nav-logo a {
@@ -244,7 +260,7 @@ input:focus {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin-right: 2rem;
+    margin-right: 1rem;
 }
 
 #nav-menu a {
@@ -260,14 +276,14 @@ input:focus {
     transition: 0.1s ease-in;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
     #mobile-menu {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         width: 100%;
         cursor: pointer;
-        margin-right: 2rem;
+        margin-right: 1rem;
     }
 
     .mobile-menu-bar {
@@ -406,6 +422,13 @@ input:focus {
 #delete-all-btn:hover {
     background-color: rgba(224, 0, 45, 0.897);
     transition: 0.1s ease-in;
+}
+
+@media screen and (max-width:960px) {
+    #delete-all-btn {
+        width: 90px;
+        height: 45px;
+    }
 }
 
 @media screen and (max-width:768px) {
