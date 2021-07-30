@@ -4,7 +4,6 @@ const passport = require('passport')
 const User = require('../models/user')
 const catchAsync = require('../utils/catchAsync')
 
-
 router.get('/register', catchAsync(async (req, res) => {
     res.render('users/register')
 }))
@@ -21,7 +20,7 @@ router.post('/register', async (req, res) => {
         })
     } catch (e) {
         req.flash('error', e.message)
-        res.redirect('register')
+        res.redirect('/register')
     }
 })
 
@@ -30,9 +29,16 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-    passport.authenticate('local', () => {
-        res.redirect('/todo')
-    })
+    try {
+        if (err) return next(err)
+        passport.authenticate('local'), () => {
+            req.flash('success', `Welcome back ${req.user.username}`)
+            res.redirect('/todo')
+        }
+    } catch (e) {
+        req.flash('error', e.message)
+        res.redirect('/login')
+    }
 })
 
 router.get('/logout', (req, res) => {

@@ -610,34 +610,25 @@ input:focus {
 }
 
 #flash {
-    display: block;
-    min-width: 100%;
-    height: 100px;
-    background-color: rgb(4, 109, 0);
-    border: 1px solid rgb(8, 228, 0);
+    display: flex;
+    word-break: keep-all;
+    flex-direction: column;
+    margin: 4rem 8rem 0 8rem;
 }
 
 #flash-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 #flash-success {
     padding: 1rem;
-    border: 1px solid rgb(8, 228, 0);
-    background-color: rgb(4, 109, 0);
+    border: 1px solid rgb(19, 228, 0);
+    background-color: rgb(3, 82, 0);
 }
 
 #flash-error {
     padding: 1rem;
     border: 1px solid rgb(228, 0, 46);
     background-color: rgb(82, 0, 16);
-}
-
-
-@media screen and (max-width:768px) {
-    #flash {
-        height: 50px;
-    }
 }

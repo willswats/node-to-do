@@ -66,7 +66,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
     res.render('home')
 })
 app.use('/', userRoutes)

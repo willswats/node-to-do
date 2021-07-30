@@ -13,7 +13,6 @@ router.get('/', catchAsync(async (req, res) => {
 router.post('/', catchAsync(async (req, res) => {
     const newToDo = new ToDo(req.body)
     await newToDo.save();
-    req.flash('success', `Successfully created task!`)
     res.redirect('/todo')
 }))
 
