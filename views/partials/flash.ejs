@@ -1,0 +1,14 @@
+<div id="flash">
+    <div id="flash-container">
+        <% if (success && success.length) { %>
+        <div id="flash-success">
+            <p><%= success %></p>
+        </div>
+        <% } %>
+        <% if (error && error.length) { %>
+        <div id="flash-error">
+            <p><%= error %></p>
+        </div>
+        <% } %>
+    </div>
+</div>

@@ -5,8 +5,12 @@
     <div id="nav-menu">
         <a href="/">Home</a>
         <a href="/todo">To Do List</a>
+        <% if (!currentUser) { %>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+        <% } else { %>
+        <a href="/logout">Logout</a>
+        <% } %>
     </div>
     <div id="mobile-menu">
         <span class="mobile-menu-bar"></span>
