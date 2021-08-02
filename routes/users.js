@@ -26,10 +26,6 @@ router.post('/register', catchAsync(async (req, res) => {
 
 router.post('/registerguest', catchAsync(async (req, res) => {
     try {
-        if (req.user) {
-            req.flash('error', 'You are already using a guest account!')
-            res.redirect('/')
-        }
         const rand = Math.random()
         const email = `${rand}@${rand}`
         const username = `${rand}`

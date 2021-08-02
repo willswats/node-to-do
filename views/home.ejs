@@ -1,5 +1,13 @@
 <% layout('layouts/boilerplate') %>
 <section id="home">
+    <% if (currentUser) { %>
+    <h1>Welcome <%= currentUser.username %>! </h1>
+    <p>I hope you enjoy the app!</p>
+    <div id="home-btns">
+        <a href="/todo"><button>View To Do List</button></a>
+    </div>
+    <% } %>
+    <% if (!currentUser) { %>
     <h1>Welcome To My To Do App!</h1>
     <p>To get started you must create an account, or use a guest account.</p>
     <p>I hope you enjoy the app!</p>
@@ -9,4 +17,6 @@
             <button>Use Guest Account</button>
         </form>
     </div>
+    <% } %>
+
 </section>
