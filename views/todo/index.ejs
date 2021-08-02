@@ -15,7 +15,6 @@
         <p class="todo-item">Start adding tasks to get started!</p>
         <% } %>
         <% for (let toDo of toDos) { %>
-        <% if(currentUser.username === toDo.author.username)  { %>
         <div class="todo-item">
             <div class="todo-item-start">
                 <form class="complete-form" action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
@@ -41,9 +40,8 @@
             </div>
         </div>
         <% } %>
-        <% } %>
         <form id="delete-all-form" action="/todo/?_method=DELETE" method="POST">
-            <% if (toDos.length > 0) { %>
+            <% if ( toDos.length > 0) { %>
             <button id="delete-all-btn">Delete All</button>
             <% } %>
         </form>

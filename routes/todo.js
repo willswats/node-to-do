@@ -3,10 +3,10 @@ const router = express.Router()
 
 const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn } = require('../middleware.js')
+const { isLoggedIn, isAuthor } = require('../middleware.js')
 
 router.get('/', isLoggedIn, catchAsync(async (req, res) => {
-    const toDos = await ToDo.find({}).populate('author')
+    const toDos = await ToDo.find({ author: req.user._id })
     await toDos.sort((a, b) => (a.priority) - (b.priority));
     res.render('todo/index', { toDos })
 }))
@@ -18,13 +18,13 @@ router.post('/', isLoggedIn, catchAsync(async (req, res) => {
     res.redirect('/todo')
 }))
 
-router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.get('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     const toDo = await ToDo.findById(id);
     res.render('todo/edit', { toDo })
 }))
 
-router.put('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
     if (req.body.complete) {
@@ -38,12 +38,12 @@ router.put('/:id', isLoggedIn, catchAsync(async (req, res) => {
     res.redirect(`/todo`)
 }))
 
-router.delete('/', isLoggedIn, catchAsync(async (req, res) => {
-    await ToDo.deleteMany({})
+router.delete('/', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
+    await ToDo.deleteMany({ author: req.user._id })
     res.redirect('/todo')
 }))
 
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndDelete(id)
     res.redirect('/todo')
