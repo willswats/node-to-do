@@ -24,6 +24,30 @@ router.post('/register', catchAsync(async (req, res) => {
     }
 }))
 
+router.post('/registerguest', catchAsync(async (req, res) => {
+    try {
+        if (req.user) {
+            req.flash('error', 'You are already using a guest account!')
+            res.redirect('/')
+        }
+        const rand = Math.random()
+        const email = `${rand}@${rand}`
+        const username = `${rand}`
+        const password = `${rand}`
+        const user = new User({ email, username })
+        const registeredUser = await User.register(user, password)
+        req.login(registeredUser, err => {
+            if (err) return next(err)
+            req.flash('success', `Successfully logged in guest user ${registeredUser.username}! `)
+            req.flash('error', 'This is a guest account, to save your To Do List please register your own account.')
+            res.redirect('/todo')
+        })
+    } catch (e) {
+        req.flash('error', e.message)
+        res.redirect('/register')
+    }
+}))
+
 router.get('/login', (req, res) => {
     res.render('users/login')
 })
@@ -35,6 +59,7 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 
 router.get('/logout', (req, res) => {
     req.logout()
+    req.flash('success', `Successfully logged out!`)
     res.redirect('/')
 })
 

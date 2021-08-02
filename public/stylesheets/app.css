@@ -82,8 +82,6 @@ input:focus {
     }
 }
 
-
-
 /* Input classes */
 .priority-input {
     width: 80px;
@@ -222,12 +220,6 @@ input:focus {
     }
 }
 
-/* Miscellaneous classes */
-.complete {
-    color: grey;
-    text-decoration-line: line-through;
-}
-
 #app {
     display: flex;
     flex-direction: column;
@@ -338,32 +330,55 @@ input:focus {
     align-items: center;
     text-align: center;
     flex: 1;
+    margin: 4rem 8rem 4rem 8rem;
 }
 
-#home button {
+#home-container {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+#home-btns {
+    display: flex;
+}
+
+#home-btns button {
     background-color: rgba(0, 151, 156, 1);
     height: 60px;
     width: 200px;
-    margin: 0.5rem 0rem;
+    margin: 0.5rem 0.5rem 0 0;
     font-size: 1.2rem;
     transition: 0.1s ease-in;
 }
 
-#home button:hover {
+#home-btns button:hover {
     background-color: rgb(0, 169, 175);
     transition: 0.1s ease-in;
 }
 
 @media screen and (max-width:960px) {
-    #home button {
+    #home {
+        margin: 4rem;
+    }
+
+    #home-btns button {
         height: 50px;
         width: 180px;
         font-size: 1rem;
     }
+
 }
 
 @media screen and (max-width:768px) {
-    #home button {
+    #home {
+        margin: 2rem;
+    }
+
+    #home-btns {
+        flex-direction: column;
+    }
+
+    #home-btns button {
         height: 45px;
         width: 150px;
         font-size: 1rem;
@@ -410,6 +425,11 @@ input:focus {
     display: flex;
     align-items: flex-start;
     margin-left: 0.5rem;
+}
+
+.complete {
+    color: grey;
+    text-decoration-line: line-through;
 }
 
 #delete-all-btn {
@@ -527,13 +547,13 @@ input:focus {
 
 @media screen and (max-width:960px) {
     #error {
-        margin: 4rem 4rem 4rem 4rem;
+        margin: 4rem;
     }
 }
 
 @media screen and (max-width:768px) {
     #error {
-        margin: 4rem 2rem 4rem 2rem;
+        margin: 4rem 2rem;
     }
 }
 
@@ -561,15 +581,37 @@ input:focus {
     background-color: rgb(20, 20, 20);
 }
 
+#register-link {
+    color: #DCDCDC;
+    transition: color 0.1s ease;
+}
+
+#register-link:hover {
+    color: white;
+    transition: color 0.1s ease;
+}
+
+#guest-btn {
+    color: #DCDCDC;
+    transition: color 0.1s ease;
+    text-decoration: underline;
+}
+
+#guest-btn:hover {
+    color: white;
+    transition: color 0.1s ease;
+    text-decoration: underline;
+}
+
 @media screen and (max-width:960px) {
     #login {
-        margin: 4rem 4rem 4rem 4rem;
+        margin: 4rem;
     }
 }
 
 @media screen and (max-width:768px) {
     #login {
-        margin: 4rem 2rem 4rem 2rem;
+        margin: 4rem 2rem;
     }
 }
 
@@ -597,21 +639,31 @@ input:focus {
     background-color: rgb(20, 20, 20);
 }
 
+#login-link {
+    color: #DCDCDC;
+    transition: color 0.1s ease;
+
+}
+
+#login-link:hover {
+    color: white;
+    transition: color 0.1s ease;
+}
+
 @media screen and (max-width:960px) {
     #register {
-        margin: 4rem 4rem 4rem 4rem;
+        margin: 4rem;
     }
 }
 
 @media screen and (max-width:768px) {
     #register {
-        margin: 4rem 2rem 4rem 2rem;
+        margin: 4rem 2rem;
     }
 }
 
 #flash {
     display: flex;
-    word-break: keep-all;
     flex-direction: column;
     margin: 4rem 8rem 0 8rem;
 }
@@ -623,12 +675,26 @@ input:focus {
 
 #flash-success {
     padding: 1rem;
+    margin-bottom: 0.5rem;
     border: 1px solid rgb(19, 228, 0);
     background-color: rgb(3, 82, 0);
 }
 
 #flash-error {
-    padding: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
     border: 1px solid rgb(228, 0, 46);
     background-color: rgb(82, 0, 16);
+}
+
+@media screen and (max-width:960px) {
+    #flash {
+        margin: 4rem 4rem 0 4rem;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #flash {
+        margin: 2rem 2rem 0 2rem;
+    }
 }
