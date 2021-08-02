@@ -3,26 +3,28 @@ const router = express.Router()
 
 const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync');
+const { isLoggedIn } = require('../middleware.js')
 
-router.get('/', catchAsync(async (req, res) => {
-    const toDos = await ToDo.find({})
+router.get('/', isLoggedIn, catchAsync(async (req, res) => {
+    const toDos = await ToDo.find({}).populate('author')
     await toDos.sort((a, b) => (a.priority) - (b.priority));
     res.render('todo/index', { toDos })
 }))
 
-router.post('/', catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, catchAsync(async (req, res) => {
     const newToDo = new ToDo(req.body)
+    newToDo.author = req.user._id
     await newToDo.save();
     res.redirect('/todo')
 }))
 
-router.get('/:id', catchAsync(async (req, res) => {
+router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     const toDo = await ToDo.findById(id);
     res.render('todo/edit', { toDo })
 }))
 
-router.put('/:id', catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
     if (req.body.complete) {
@@ -36,12 +38,12 @@ router.put('/:id', catchAsync(async (req, res) => {
     res.redirect(`/todo`)
 }))
 
-router.delete('/', catchAsync(async (req, res) => {
+router.delete('/', isLoggedIn, catchAsync(async (req, res) => {
     await ToDo.deleteMany({})
     res.redirect('/todo')
 }))
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndDelete(id)
     res.redirect('/todo')

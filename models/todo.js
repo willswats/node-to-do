@@ -14,6 +14,10 @@ const toDoSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
         required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 
