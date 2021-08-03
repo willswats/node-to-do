@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+
 const User = require('../models/user')
+const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync')
 
 router.get('/register', (req, res) => {
@@ -26,7 +28,11 @@ router.post('/register', catchAsync(async (req, res) => {
 
 router.post('/registerguest', catchAsync(async (req, res) => {
     try {
-        const rand = Math.random()
+        if (req.user) {
+            req.flash('error', 'You are already signed in to an account!')
+            return res.redirect('/')
+        }
+        const rand = Math.floor(Math.random() * 1000000000000000000000)
         const email = `${rand}@${rand}`
         const username = `${rand}`
         const password = `${rand}`
@@ -38,9 +44,10 @@ router.post('/registerguest', catchAsync(async (req, res) => {
             req.flash('error', 'This is a guest account, to save your To Do List please register your own account.')
             res.redirect('/todo')
         })
-    } catch (e) {
+    }
+    catch (e) {
         req.flash('error', e.message)
-        res.redirect('/register')
+        res.redirect('/')
     }
 }))
 
@@ -61,7 +68,9 @@ router.get('/logout', (req, res) => {
 
 router.delete('/deleteaccount', catchAsync(async (req, res) => {
     try {
-        await User.findOneAndDelete({ _id: req.user._id })
+        const { id } = req.user
+        await ToDo.deleteMany({ author: id })
+        await User.findByIdAndDelete(id)
         req.flash('success', `Successfully deleted account!`)
         res.redirect('/')
     }

@@ -13,3 +13,10 @@ deleteAccountForm.addEventListener('submit', (event) => {
         event.preventDefault();
     }
 });
+
+const logoutAnchor = document.querySelector('#logout-anchor')
+logoutAnchor.addEventListener('click', (event) => {
+    if (!confirm("Are you sure you want to logout?")) {
+        event.preventDefault();
+    }
+});

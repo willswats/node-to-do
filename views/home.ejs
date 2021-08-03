@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <section id="home">
     <% if (currentUser) { %>
-    <h1>Welcome <%= currentUser.username %>! </h1>
+    <h1>Hello <%= currentUser.username %>! </h1>
     <p>I hope you are enjoying the app!</p>
     <div id="home-btns">
         <a href="/todo"><button>View To Do List</button></a>

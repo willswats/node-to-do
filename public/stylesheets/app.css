@@ -70,15 +70,11 @@ input:focus {
 
 @media screen and (max-width:768px) {
     h1 {
-        font-size: 2.1rem;
+        font-size: 2.2rem;
     }
 
     p {
-        font-size: 1.1rem;
-    }
-
-    input {
-        height: 30px;
+        font-size: 1.2rem;
     }
 }
 
@@ -136,6 +132,10 @@ input:focus {
     width: 30px;
     height: 30px;
     transition: 0.1s ease-in;
+}
+
+.checked-btn::after {
+    content: '\2714';
 }
 
 .checked-btn:hover {
@@ -207,16 +207,6 @@ input:focus {
 
     .delete-btn {
         width: 50px;
-    }
-
-    .unchecked-btn {
-        width: 25px;
-        height: 25px;
-    }
-
-    .checked-btn {
-        width: 25px;
-        height: 25px;
     }
 }
 

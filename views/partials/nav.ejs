@@ -8,15 +8,15 @@
         <% if (!currentUser) { %>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+        <a id="logout-anchor" style="display:none;"></a>
+        <form id="delete-account-form" style="display:none;"></form>
         <% } %>
         <% if (currentUser) { %>
-        <a href="/logout">Logout</a>
-        <% } %>
+        <a id="logout-anchor" href="/logout">Logout</a>
         <form id="delete-account-form" action="/deleteaccount/?_method=DELETE" method="POST">
-            <% if (currentUser) { %>
             <button id="delete-account-btn">Delete Account</button>
-            <% } %>
         </form>
+        <% } %>
     </div>
     <div id="mobile-menu">
         <span class="mobile-menu-bar"></span>
