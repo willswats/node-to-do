@@ -336,6 +336,7 @@ input:focus {
 #home-container {
     min-height: 100%;
     min-width: 100%;
+    text-align: center;
 }
 
 #home-btns {
@@ -582,6 +583,8 @@ input:focus {
 }
 
 #register-link {
+    display: block;
+    margin-top: 0.5rem;
     color: #DCDCDC;
     transition: color 0.1s ease;
 }
@@ -592,6 +595,7 @@ input:focus {
 }
 
 #guest-btn {
+    margin-top: 0.5rem;
     color: #DCDCDC;
     transition: color 0.1s ease;
     text-decoration: underline;
@@ -640,15 +644,17 @@ input:focus {
 }
 
 #login-link {
+    display: block;
+    margin-top: 0.5rem;
     color: #DCDCDC;
     transition: color 0.1s ease;
-
 }
 
 #login-link:hover {
     color: white;
     transition: color 0.1s ease;
 }
+
 
 @media screen and (max-width:960px) {
     #register {
@@ -665,7 +671,9 @@ input:focus {
 #flash {
     display: flex;
     flex-direction: column;
-    margin: 4rem 8rem 0 8rem;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 8rem 0rem 8rem;
 }
 
 #flash-container {
@@ -674,6 +682,8 @@ input:focus {
 }
 
 #flash-success {
+    display: block;
+    min-width: 276px;
     padding: 1rem;
     margin-bottom: 0.5rem;
     border: 1px solid rgb(19, 228, 0);
@@ -681,20 +691,10 @@ input:focus {
 }
 
 #flash-error {
-    padding: 0.5rem;
+    display: block;
+    min-width: 276px;
+    padding: 1rem;
     margin-bottom: 0.5rem;
     border: 1px solid rgb(228, 0, 46);
     background-color: rgb(82, 0, 16);
-}
-
-@media screen and (max-width:960px) {
-    #flash {
-        margin: 4rem 4rem 0 4rem;
-    }
-}
-
-@media screen and (max-width:768px) {
-    #flash {
-        margin: 2rem 2rem 0 2rem;
-    }
 }
