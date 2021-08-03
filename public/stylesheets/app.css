@@ -266,6 +266,19 @@ input:focus {
 #nav-menu a:hover {
     color: rgb(0, 207, 214);
     transition: 0.1s ease-in;
+
+}
+
+#delete-account-btn {
+    color: rgba(0, 151, 156, 1);
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    transition: 0.1s ease-in;
+}
+
+#delete-account-btn:hover {
+    color: rgb(0, 207, 214);
+    transition: 0.1s ease-in;
 }
 
 @media screen and (max-width: 960px) {
@@ -314,6 +327,10 @@ input:focus {
 
     #nav-menu a {
         font-size: 1.1rem;
+        margin: 0;
+    }
+
+    #delete-account-btn {
         margin: 0;
     }
 

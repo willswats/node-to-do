@@ -8,9 +8,15 @@
         <% if (!currentUser) { %>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
-        <% } else { %>
+        <% } %>
+        <% if (currentUser) { %>
         <a href="/logout">Logout</a>
         <% } %>
+        <form id="delete-account-form" action="/deleteaccount/?_method=DELETE" method="POST">
+            <% if (currentUser) { %>
+            <button id="delete-account-btn">Delete Account</button>
+            <% } %>
+        </form>
     </div>
     <div id="mobile-menu">
         <span class="mobile-menu-bar"></span>

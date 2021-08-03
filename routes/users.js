@@ -59,4 +59,16 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+router.delete('/deleteaccount', catchAsync(async (req, res) => {
+    try {
+        await User.findOneAndDelete({ _id: req.user._id })
+        req.flash('success', `Successfully deleted account!`)
+        res.redirect('/')
+    }
+    catch (e) {
+        req.flash('error', e.message)
+        res.redirect('/')
+    }
+}))
+
 module.exports = router;

@@ -38,7 +38,7 @@ router.put('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     res.redirect(`/todo`)
 }))
 
-router.delete('/', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
+router.delete('/', isLoggedIn, catchAsync(async (req, res) => {
     await ToDo.deleteMany({ author: req.user._id })
     res.redirect('/todo')
 }))
