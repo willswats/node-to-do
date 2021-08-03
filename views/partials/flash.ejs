@@ -1,16 +1,22 @@
 <% if (success.length || error.length) { %>
 <div id="flash">
-    <div id="flash-container">
-        <% if (success && success.length) { %>
-        <div id="flash-success">
-            <p><%= success %></p>
+    <% if (success && success.length) { %>
+    <div id="flash-success">
+        <div id="flash-cross">
+            <span class="flash-cross-bar"></span>
+            <span class="flash-cross-bar"></span>
         </div>
-        <% } %>
-        <% if (error && error.length) { %>
-        <div id="flash-error">
-            <p><%= error %></p>
-        </div>
-        <% } %>
+        <p><%= success %></p>
     </div>
+    <% } %>
+    <% if (error && error.length) { %>
+    <div id="flash-error">
+        <div id="flash-cross">
+            <span class="flash-cross-bar"></span>
+            <span class="flash-cross-bar"></span>
+        </div>
+        <p><%= error %></p>
+    </div>
+    <% } %>
 </div>
 <% } %>
