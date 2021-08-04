@@ -5,7 +5,7 @@ const passport = require('passport')
 const User = require('../models/user')
 const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync')
-const { validateUser } = require('../middleware.js')
+const { validateUser, checkForUser } = require('../middleware.js')
 
 router.get('/register', (req, res) => {
     res.render('users/register')
@@ -27,12 +27,8 @@ router.post('/register', validateUser, catchAsync(async (req, res) => {
     }
 }))
 
-router.post('/registerguest', catchAsync(async (req, res) => {
+router.post('/registerguest', checkForUser, catchAsync(async (req, res) => {
     try {
-        if (req.user) {
-            req.flash('error', 'You are already signed in to an account.')
-            return res.redirect('/')
-        }
         const rand = Math.floor(Math.random() * 1000000000000000000000)
         const email = `${rand}@${rand}`
         const username = `${rand}`

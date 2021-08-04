@@ -20,6 +20,17 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
 }
 
+module.exports.validateToDo = (req, res, next) => {
+    const { error } = toDoSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        req.flash('error', msg)
+        res.redirect('/todo')
+    } else {
+        next();
+    }
+}
+
 module.exports.validateUser = (req, res, next) => {
     const { error } = userSchema.validate(req.body)
     if (error) {
@@ -31,12 +42,10 @@ module.exports.validateUser = (req, res, next) => {
     }
 }
 
-module.exports.validateToDo = (req, res, next) => {
-    const { error } = toDoSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        req.flash('error', msg)
-        res.redirect('/todo')
+module.exports.checkForUser = (req, res, next) => {
+    if (req.user) {
+        req.flash('error', 'You are already signed in to an account.')
+        return res.redirect('/')
     } else {
         next();
     }

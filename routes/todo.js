@@ -25,14 +25,14 @@ router.get('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     res.render('todo/edit', { toDo })
 }))
 
-router.put('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isAuthor, validateToDo, catchAsync(async (req, res) => {
     const { id } = req.params;
     await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
     req.flash('success', 'Updated task.')
     res.redirect(`/todo`)
 }))
 
-router.put('/:id/complete', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
+router.put('/:id/complete', isLoggedIn, isAuthor, validateToDo, catchAsync(async (req, res) => {
     const { id } = req.params;
     const toDo = await ToDo.findById(id);
     if (toDo.complete === false) {
