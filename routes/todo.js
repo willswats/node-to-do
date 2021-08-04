@@ -3,7 +3,7 @@ const router = express.Router()
 
 const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, isAuthor } = require('../middleware.js')
+const { isLoggedIn, isAuthor, validateToDo } = require('../middleware.js')
 
 router.get('/', isLoggedIn, catchAsync(async (req, res) => {
     const toDos = await ToDo.find({ author: req.user._id })
@@ -11,7 +11,7 @@ router.get('/', isLoggedIn, catchAsync(async (req, res) => {
     res.render('todo/index', { toDos })
 }))
 
-router.post('/', isLoggedIn, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateToDo, catchAsync(async (req, res) => {
     const newToDo = new ToDo(req.body)
     newToDo.author = req.user._id
     await newToDo.save();

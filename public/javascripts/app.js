@@ -39,7 +39,6 @@ for (let i = 0, crossSuccessLength = crossSuccess.length; i < crossSuccessLength
         })
     }, 5000)
 }
-
 for (let i = 0, crossErrorLength = crossError.length; i < crossErrorLength; i++) {
     crossError[i].addEventListener("click", function () {
         flashError[i].classList.add('fade')

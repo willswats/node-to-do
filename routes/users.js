@@ -5,19 +5,20 @@ const passport = require('passport')
 const User = require('../models/user')
 const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync')
+const { validateUser } = require('../middleware.js')
 
 router.get('/register', (req, res) => {
     res.render('users/register')
 })
 
-router.post('/register', catchAsync(async (req, res) => {
+router.post('/register', validateUser, catchAsync(async (req, res) => {
     try {
         const { email, username, password } = req.body
         const user = new User({ email, username })
         const registeredUser = await User.register(user, password)
         req.login(registeredUser, err => {
             if (err) return next(err)
-            req.flash('success', `Successfully logged in user ${registeredUser.username}! `)
+            req.flash('success', `Successfully registered user ${registeredUser.username}! `)
             res.redirect('/todo')
         })
     } catch (e) {
