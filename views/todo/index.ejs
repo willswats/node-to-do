@@ -17,7 +17,7 @@
         <% for (let toDo of toDos) { %>
         <div class="todo-item">
             <div class="todo-item-start">
-                <form class="complete-form" action="/todo/<%=toDo._id%>?_method=PUT" method="POST">
+                <form class="complete-form" action="/todo/<%=toDo._id%>/complete?_method=PUT" method="POST">
                     <% if (toDo.complete === false) { %>
                     <button class="unchecked-btn" name="complete" value="<%= toDo.complete %>"></button>
                     <% } else { %>

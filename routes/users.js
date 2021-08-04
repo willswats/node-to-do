@@ -29,7 +29,7 @@ router.post('/register', catchAsync(async (req, res) => {
 router.post('/registerguest', catchAsync(async (req, res) => {
     try {
         if (req.user) {
-            req.flash('error', 'You are already signed in to an account!')
+            req.flash('error', 'You are already signed in to an account.')
             return res.redirect('/')
         }
         const rand = Math.floor(Math.random() * 1000000000000000000000)
@@ -56,13 +56,13 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
-    req.flash('success', `Welcome back user ${req.user.username}`)
+    req.flash('success', `Welcome back user ${req.user.username}!`)
     res.redirect('/todo')
 })
 
 router.get('/logout', (req, res) => {
     req.logout()
-    req.flash('success', `Successfully logged out!`)
+    req.flash('success', `Successfully logged out.`)
     res.redirect('/')
 })
 
@@ -71,7 +71,7 @@ router.delete('/deleteaccount', catchAsync(async (req, res) => {
         const { id } = req.user
         await ToDo.deleteMany({ author: id })
         await User.findByIdAndDelete(id)
-        req.flash('success', `Successfully deleted account!`)
+        req.flash('success', `Successfully deleted account.`)
         res.redirect('/')
     }
     catch (e) {
