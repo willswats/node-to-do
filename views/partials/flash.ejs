@@ -1,8 +1,8 @@
 <% if (success.length || error.length) { %>
 <div id="flash">
     <% if (success && success.length) { %>
-    <div id="flash-success">
-        <div id="flash-cross">
+    <div class="flash-success">
+        <div class="flash-cross cross-success">
             <span class="flash-cross-bar"></span>
             <span class="flash-cross-bar"></span>
         </div>
@@ -10,8 +10,8 @@
     </div>
     <% } %>
     <% if (error && error.length) { %>
-    <div id="flash-error">
-        <div id="flash-cross">
+    <div class="flash-error">
+        <div class="flash-cross cross-error">
             <span class="flash-cross-bar"></span>
             <span class="flash-cross-bar"></span>
         </div>

@@ -291,7 +291,7 @@ input:focus {
     }
 
     #mobile-menu.cross .mobile-menu-bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg)
+        transform: translate(0, 9px) rotate(45deg)
     }
 
     #mobile-menu.cross .mobile-menu-bar:nth-child(2) {
@@ -299,7 +299,7 @@ input:focus {
     }
 
     #mobile-menu.cross .mobile-menu-bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+        transform: translate(0, -9px) rotate(-45deg)
     }
 
     #nav-menu {
@@ -683,7 +683,7 @@ input:focus {
     z-index: 1;
 }
 
-#flash-success {
+.flash-success {
     display: block;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -692,7 +692,7 @@ input:focus {
     background-color: rgb(3, 82, 0);
 }
 
-#flash-error {
+.flash-error {
     display: block;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -701,33 +701,35 @@ input:focus {
     background-color: rgb(82, 0, 16);
 }
 
-#flash-cross {
-    float: right;
-    position: relative;
-    height: 20px;
-    width: 20px;
+.flash-cross {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-#flash-cross:hover {
+    float: right;
     cursor: pointer;
 }
 
-.flash-cross-bar::before,
-.flash-cross-bar::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 2px;
-    background-color: #fff;
+.flash-cross-bar {
+    display: block;
+    width: 18px;
+    height: 3px;
+    margin: 3px;
+    transition: all 0.3s ease-in-out;
+    background: #fff;
 }
 
-.flash-cross-bar::before {
-    transform: rotate(45deg);
+.flash-cross-bar:nth-child(1) {
+    transform: translate(0, 4.5px) rotate(45deg)
 }
 
-.flash-cross-bar::after {
-    transform: rotate(-45deg);
+
+.flash-cross-bar:nth-child(2) {
+    transform: translate(0, -4.5px) rotate(-45deg)
+}
+
+.flash-success.hide {
+    display: none;
+}
+
+.flash-error.hide {
+    display: none;
 }

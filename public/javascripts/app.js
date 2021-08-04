@@ -20,3 +20,18 @@ logoutAnchor.addEventListener('click', (event) => {
         event.preventDefault();
     }
 });
+
+const flashSuccess = document.getElementsByClassName('flash-success')
+const flashError = document.getElementsByClassName('flash-error')
+const crossSuccess = document.getElementsByClassName('cross-success')
+const crossError = document.getElementsByClassName('cross-error')
+for (let i = 0, crossSuccessLength = crossSuccess.length; i < crossSuccessLength; i++) {
+    crossSuccess[i].addEventListener("click", function () {
+        flashSuccess[i].classList.add('hide')
+    })
+}
+for (let i = 0, crossErrorLength = crossError.length; i < crossErrorLength; i++) {
+    crossError[i].addEventListener("click", function () {
+        flashError[i].classList.add('hide')
+    })
+}
