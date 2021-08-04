@@ -684,6 +684,7 @@ input:focus {
 }
 
 .flash-success {
+    transition: 1s ease all;
     display: block;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -693,6 +694,7 @@ input:focus {
 }
 
 .flash-error {
+    transition: 1s ease all;
     display: block;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -732,4 +734,14 @@ input:focus {
 
 .flash-error.hide {
     display: none;
+}
+
+.flash-success.fade {
+    transition: 1s ease all;
+    opacity: 0
+}
+
+.flash-error.fade {
+    transition: 1s ease all;
+    opacity: 0;
 }
