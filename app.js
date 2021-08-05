@@ -54,20 +54,40 @@ store.on('error', (e) => {
     console.log('Session store error', e)
 })
 
-const sessionConfig = {
-    secret,
-    name: 'session',
-    resave: false,
-    saveUninitialized: true,
-    proxy: true,
-    cookie: {
-        httpOnly: true,
-        secure: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
+if (process.env.NODE_ENV === "production") {
+    const sessionConfig = {
+        store,
+        secret,
+        name: 'session',
+        resave: false,
+        saveUninitialized: true,
+        proxy: true,
+        cookie: {
+            httpOnly: true,
+            secure: true,
+            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+            maxAge: 1000 * 60 * 60 * 24 * 7
+        }
     }
+    app.use(session(sessionConfig))
 }
-app.use(session(sessionConfig))
+if (process.env.NODE_ENV !== "production") {
+    const sessionConfig = {
+        store,
+        secret,
+        name: 'session',
+        resave: false,
+        saveUninitialized: true,
+        proxy: true,
+        cookie: {
+            httpOnly: true,
+            expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+            maxAge: 1000 * 60 * 60 * 24 * 7
+        }
+    }
+    app.use(session(sessionConfig))
+}
+
 app.use(flash())
 app.use(helmet())
 
