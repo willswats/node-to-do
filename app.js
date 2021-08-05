@@ -8,13 +8,13 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const helmet = require('helmet')
-const MongoStore = require('connect-mongo')
 
 const toDoRoutes = require('./routes/todo')
 const userRoutes = require('./routes/users')
 
 const ExpressError = require('./utils/ExpressError')
 const User = require('./models/user')
+const { sessionConfig } = require('./configs')
 
 const app = express()
 
@@ -42,42 +42,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret'
-
-const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    secret,
-    touchAfter: 24 * 60 * 60,
-})
-
-store.on('error', (e) => {
-    console.log('Session store error', e)
-})
-
-const sessionConfig = {
-    store,
-    name: 'session',
-    secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-}
-
 app.use(session(sessionConfig))
 app.use(flash())
 app.use(helmet())
-
-app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            defaultSrc: "'self'",
-        },
-    })
-);
 
 app.use(passport.initialize())
 app.use(passport.session())
