@@ -7,6 +7,8 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
+const helmet = require('helmet')
+const MongoStore = require('connect-mongo')
 
 const toDoRoutes = require('./routes/todo')
 const userRoutes = require('./routes/users')
@@ -16,7 +18,7 @@ const User = require('./models/user')
 
 const app = express()
 
-const dbUrl = 'mongodb://localhost:27017/toDoApp'
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/toDoApp'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -24,10 +26,10 @@ mongoose.connect(dbUrl, {
     useCreateIndex: true
 })
     .then(() => {
-        console.log('Mongo connection open!')
+        console.log('Mongo connection open')
     })
     .catch(err => {
-        console.log('Mongo connection error!')
+        console.log('Mongo connection error')
         console.log(err)
     });
 
@@ -40,8 +42,22 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret'
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60,
+})
+
+store.on('error', (e) => {
+    console.log('Session store error', e)
+})
+
 const sessionConfig = {
-    secret: 'thisshouldbeabettersecret',
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -53,6 +69,15 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash())
+app.use(helmet())
+
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: "'self'",
+        },
+    })
+);
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -83,6 +108,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000')
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
 })

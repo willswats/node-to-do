@@ -3,7 +3,11 @@
     <div id="error-container">
         <div id="error-box">
             <h1>Something went wrong!</h1>
+            <% if (process.env.NODE_ENV === 'production') { %>
             <p>Error: <%=err.statusCode || 500 %> - <%= err.message %></p>
+            <% } else { %>
+            <p><%=err.statusCode || 500 %> <%= err.stack %></p>
+            <% } %>
         </div>
     </div>
 </section>
