@@ -1,6 +1,6 @@
 # To Do App
 
-An Express web application which allows you to create an account which will have it's own to do list with full CRUD functionality, styled purely with css. Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
+An Express web application featuring full CRUD functionality, styled purely with CSS. Once an account is made (or guest account), you will have access to your to do list which can be used to; add, edit, delete, and check tasks, each with their own priority level. Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
 
 ## Table of Contents
 
@@ -12,15 +12,18 @@ An Express web application which allows you to create an account which will have
 
 ## General Information
 
-I built this project to refresh my mind on everything I learnt through completing [The Web Developer Bootcamp 2021](https://www.udemy.com/course/the-web-developer-bootcamp) Udemy course. The app's purpose is to be a list where you can write down your tasks for the day so that you do not forget them. As you complete your tasks you can tick them off so you know what you've completed. Your tasks will all be saved under the account you create.
+I built this project to refresh my mind on everything I learnt through completing [The Web Developer Bootcamp 2021](https://www.udemy.com/course/the-web-developer-bootcamp) course. The app's purpose is to be a list where you can write down your tasks for the day so that you do not forget them. As you complete your tasks you can tick them off so you know what you've completed. Your tasks will all be saved under the account you create.
 
 ## Features
 
-- Add tasks with their own priority
-- Check tasks that are complete
-- Edit and delete tasks
-- Create your own account to save your to do list
-- Create a guest account to trial the app
+- Full CRUD functionality
+- Full statefulness through MongoDB
+- Account creation
+- Guest accounts
+- Authentication
+- Authorization
+- Priority level for tasks
+- Checkboxes for each task
 
 ## Setup
 
