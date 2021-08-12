@@ -1,27 +1,18 @@
 # To Do App
 
-An Express To Do list Application which allows you to create an account which will have it's own to do list with full CRUD functionality, styled purely with css. Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
-
-![to-do-app-img](./public/imgs/to-do-app.png)
+An Express web application which allows you to create an account which will have it's own to do list with full CRUD functionality, styled purely with css. Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
 
 ## Table of Contents
 
 - [To Do App](#to-do-app)
   - [Table of Contents](#table-of-contents)
   - [General Information](#general-information)
-  - [Technologies Used](#technologies-used)
   - [Features](#features)
   - [Setup](#setup)
 
 ## General Information
 
 I built this project to refresh my mind on everything I learnt through completing [The Web Developer Bootcamp 2021](https://www.udemy.com/course/the-web-developer-bootcamp) Udemy course. The app's purpose is to be a list where you can write down your tasks for the day so that you do not forget them. As you complete your tasks you can tick them off so you know what you've completed. Your tasks will all be saved under the account you create.
-
-## Technologies Used
-
-- Express
-- MongoDB
-- Mongoose
 
 ## Features
 
