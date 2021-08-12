@@ -1,6 +1,8 @@
 # To Do App
 
-An Express web application featuring full CRUD functionality, styled purely with CSS. Once an account is made (or guest account), you will have access to your to do list which can be used to; add, edit, delete, and check tasks, each with their own priority level. Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
+An Express web application featuring full CRUD functionality, styled purely with CSS. Once an account is made (or guest account), you will have access to your to do list which can be used to; add, edit, delete, and check tasks, each with their own priority level.
+
+Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
 
 ## Table of Contents
 
