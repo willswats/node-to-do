@@ -490,7 +490,6 @@ input:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80px;
     background-color: rgb(19, 19, 19);
 }
 
@@ -499,6 +498,7 @@ input:focus {
     text-decoration: none;
     color: rgb(0, 112, 116);
     transition: 0.1s ease-in;
+    margin-top: 5px;
 }
 
 #website-link:hover {
