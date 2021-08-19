@@ -498,10 +498,9 @@ input:focus {
 #footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    height: 80px;
     background-color: rgb(19, 19, 19);
-    height: 90px;
 }
 
 #website-link {
@@ -518,6 +517,7 @@ input:focus {
 
 #social {
     display: flex;
+    height: 100%;
 }
 
 #social img {
