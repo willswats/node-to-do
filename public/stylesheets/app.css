@@ -208,6 +208,16 @@ input:focus {
     .delete-btn {
         width: 50px;
     }
+
+    .unchecked-btn {
+        width: 25px;
+        height: 25px;
+    }
+
+    .checked-btn {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 #app {
@@ -512,6 +522,7 @@ input:focus {
 
 #social img {
     width: 45px;
+    height: 45px;
     margin: 5px 5px;
     border-radius: 50%;
     background-color: rgb(0, 112, 116);
