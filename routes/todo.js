@@ -1,59 +1,21 @@
 const express = require('express')
 const router = express.Router()
-
-const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, isAuthor, validateToDo } = require('../middleware.js')
+const todo = require('../controllers/todo')
 
-router.get('/', isLoggedIn, catchAsync(async (req, res) => {
-    const toDos = await ToDo.find({ author: req.user._id })
-    await toDos.sort((a, b) => (a.priority) - (b.priority));
-    res.render('todo/index', { toDos })
-}))
+router.route('/')
+    .get(isLoggedIn, catchAsync(todo.index))
+    .post(isLoggedIn, validateToDo, catchAsync(todo.create))
 
-router.post('/', isLoggedIn, validateToDo, catchAsync(async (req, res) => {
-    const newToDo = new ToDo(req.body)
-    newToDo.author = req.user._id
-    await newToDo.save();
-    req.flash('success', 'Added new task.')
-    res.redirect('/todo')
-}))
+router.route('/:id')
+    .get(isLoggedIn, isAuthor, catchAsync(todo.show))
+    .put(isLoggedIn, isAuthor, validateToDo, catchAsync(todo.edit))
 
-router.get('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const toDo = await ToDo.findById(id);
-    res.render('todo/edit', { toDo })
-}))
+router.put('/:id/complete', isLoggedIn, isAuthor, validateToDo, catchAsync(todo.complete))
 
-router.put('/:id', isLoggedIn, isAuthor, validateToDo, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await ToDo.findByIdAndUpdate(id, req.body, { runValidators: true });
-    req.flash('success', 'Updated task.')
-    res.redirect(`/todo`)
-}))
+router.delete('/', isLoggedIn, catchAsync(todo.destroyAll))
 
-router.put('/:id/complete', isLoggedIn, isAuthor, validateToDo, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const toDo = await ToDo.findById(id);
-    if (toDo.complete === false) {
-        await toDo.updateOne({ complete: true })
-    } else {
-        await toDo.updateOne({ complete: false })
-    }
-    res.redirect(`/todo`)
-}))
-
-router.delete('/', isLoggedIn, catchAsync(async (req, res) => {
-    await ToDo.deleteMany({ author: req.user._id })
-    req.flash('success', 'Deleted all tasks.')
-    res.redirect('/todo')
-}))
-
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await ToDo.findByIdAndDelete(id)
-    req.flash('success', 'Deleted task.')
-    res.redirect('/todo')
-}))
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(todo.destroy))
 
 module.exports = router;

@@ -2,79 +2,22 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 
-const User = require('../models/user')
-const ToDo = require('../models/todo');
 const catchAsync = require('../utils/catchAsync')
 const { validateUser, checkForUser } = require('../middleware.js')
+const users = require('../controllers/users')
 
-router.get('/register', (req, res) => {
-    res.render('users/register')
-})
+router.route('/register')
+    .get(users.renderRegister)
+    .post(validateUser, catchAsync(users.register))
 
-router.post('/register', validateUser, catchAsync(async (req, res) => {
-    try {
-        const { email, username, password } = req.body
-        const user = new User({ email, username })
-        const registeredUser = await User.register(user, password)
-        req.login(registeredUser, err => {
-            if (err) return next(err)
-            req.flash('success', `Successfully registered user ${registeredUser.username}! `)
-            res.redirect('/todo')
-        })
-    } catch (e) {
-        req.flash('error', e.message)
-        res.redirect('/register')
-    }
-}))
+router.post('/registerguest', checkForUser, catchAsync(users.registerGuest))
 
-router.post('/registerguest', checkForUser, catchAsync(async (req, res) => {
-    try {
-        const rand = Math.floor(Math.random() * 1000000000000000000000)
-        const email = `${rand}@${rand}`
-        const username = `${rand}`
-        const password = `${rand}`
-        const user = new User({ email, username })
-        const registeredUser = await User.register(user, password)
-        req.login(registeredUser, err => {
-            if (err) return next(err)
-            req.flash('success', `Successfully logged in guest user ${registeredUser.username}! `)
-            req.flash('error', 'This is a guest account, to save your To Do List please register your own account.')
-            res.redirect('/todo')
-        })
-    }
-    catch (e) {
-        req.flash('error', e.message)
-        res.redirect('/')
-    }
-}))
+router.route('/login')
+    .get(users.renderLogin)
+    .post(passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (users.login))
 
-router.get('/login', (req, res) => {
-    res.render('users/login')
-})
+router.get('/logout', users.logout)
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
-    req.flash('success', `Welcome back user ${req.user.username}!`)
-    res.redirect('/todo')
-})
-
-router.get('/logout', (req, res) => {
-    req.logout()
-    req.flash('success', `Successfully logged out.`)
-    res.redirect('/')
-})
-
-router.delete('/deleteaccount', catchAsync(async (req, res) => {
-    try {
-        const { id } = req.user
-        await ToDo.deleteMany({ author: id })
-        await User.findByIdAndDelete(id)
-        req.flash('success', `Successfully deleted account.`)
-        res.redirect('/')
-    }
-    catch (e) {
-        req.flash('error', e.message)
-        res.redirect('/')
-    }
-}))
+router.delete('/deleteaccount', catchAsync(users.destroyAccount))
 
 module.exports = router;
