@@ -7,13 +7,13 @@
 
 body {
     background-color: rgb(31, 31, 31);
-    color: #eeeeee;
+    color: #fff;
     font-family: sans-serif;
 }
 
 button {
     border: none;
-    color: #eeeeee;
+    color: #fff;
     background-color: #131313;
     font-size: 1rem;
     border-radius: 0;
@@ -33,7 +33,7 @@ p {
 
 input {
     border: none;
-    background-color: #DCDCDC;
+    background-color: #fff;
     color: black;
     font-size: 1.2rem;
     height: 40px;
