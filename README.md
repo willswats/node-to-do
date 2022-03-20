@@ -1,13 +1,11 @@
-# To Do App
+# To Do App <!-- omit in toc -->
 
 An application to add, edit, delete, and check tasks, each with their own priority level.
 
 Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [To Do App](#to-do-app)
-  - [Table of Contents](#table-of-contents)
   - [General Information](#general-information)
   - [Features](#features)
   - [Setup](#setup)
