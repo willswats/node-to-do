@@ -2,8 +2,6 @@
 
 An application to add, edit, delete, and check tasks, each with their own priority level.
 
-Live project [_here_](https://to-do-app-willswats.herokuapp.com/).
-
 ## Table of Contents <!-- omit in toc -->
 
   - [General Information](#general-information)
