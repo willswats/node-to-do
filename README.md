@@ -1,6 +1,6 @@
 # Node To Do <!-- omit in toc -->
 
-An application to add, edit, delete, and check tasks, each with their own priority level.
+A to do list application built with Node.js, Express and MongoDB.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -10,7 +10,7 @@ An application to add, edit, delete, and check tasks, each with their own priori
 
 ## General Information
 
-I built this project to refresh my mind on everything I learnt through completing [The Web Developer Bootcamp 2021](https://www.udemy.com/course/the-web-developer-bootcamp) course, this includes; node, express, MongoDB, and more.
+I built this project to refresh my mind on everything I learnt through completing [The Web Developer Bootcamp 2021](https://www.udemy.com/course/the-web-developer-bootcamp) course, this includes; Node.js, Express, MongoDB, and more.
 
 ## Features
 
