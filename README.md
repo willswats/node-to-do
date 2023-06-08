@@ -1,4 +1,4 @@
-# Node To Do <!-- omit in toc -->
+# To Do <!-- omit in toc -->
 
 A to do list application built with Node.js, Express and MongoDB.
 
