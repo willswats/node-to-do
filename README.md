@@ -1,4 +1,4 @@
-# To Do <!-- omit in toc -->
+# To Do List <!-- omit in toc -->
 
 A to do list application.
 
