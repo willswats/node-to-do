@@ -1,6 +1,6 @@
 # To Do <!-- omit in toc -->
 
-A to do list application built with Node.js, Express and MongoDB.
+A to do list application.
 
 ## Table of Contents <!-- omit in toc -->
 
